@@ -13,9 +13,13 @@ interface IApiData {
   name: string;
 }
 
+
+
 function Card() {
   const [inputVal, setInputVal] = useState<string>("");
   const [result, setResult] = useState<string>("");
+
+  const regionNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
 
   const handleData = (data: IApiData) => {
     data.country.reduce(
@@ -54,7 +58,7 @@ function Card() {
           onChange={onInputChange}
         />
         <Button title="Predict" onClick={onBtnClick} />
-        <p>You are from {result}</p>
+        <p>You are from {regionNamesInEnglish.of(result)}</p>
       </div>
     </div>
   );
