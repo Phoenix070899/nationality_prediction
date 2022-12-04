@@ -13,13 +13,13 @@ interface IApiData {
   name: string;
 }
 
-
+const regionNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
 
 function Card() {
   const [inputVal, setInputVal] = useState<string>("");
   const [result, setResult] = useState<string>("");
 
-  const regionNamesInEnglish = new Intl.DisplayNames(['en'], { type: 'region' });
+
 
   const handleData = (data: IApiData) => {
     data.country.reduce(
