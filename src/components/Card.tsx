@@ -19,8 +19,6 @@ function Card() {
   const [inputVal, setInputVal] = useState<string>("");
   const [result, setResult] = useState<string>("");
 
-
-
   const handleData = (data: IApiData) => {
     data.country.reduce(
       (acc: IApiCountry, curr: IApiCountry) => {
@@ -36,6 +34,7 @@ function Card() {
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputVal(e.target.value);
+    setResult('')
   };
 
   const onBtnClick = () => {
@@ -58,7 +57,8 @@ function Card() {
           onChange={onInputChange}
         />
         <Button title="Predict" onClick={onBtnClick} />
-        <p>You are from {regionNamesInEnglish.of(result)}</p>
+        {result !== '' ? <p>You are from {regionNamesInEnglish.of(result)}</p> : null}
+       
       </div>
     </div>
   );
