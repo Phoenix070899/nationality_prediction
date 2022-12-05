@@ -32,6 +32,12 @@ function Card() {
     );
   };
 
+  const onKeyDown = (e : React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onBtnClick()
+    }
+  }
+
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputVal(e.target.value);
     setResult('')
@@ -45,6 +51,7 @@ function Card() {
         .catch((error) => console.log("Error:", error));
   };
 
+
   return (
     <div className="w-1/3 gap-2 min-w-[280px] bg-white text-black flex flex-col items-center p-5 rounded">
       <h1>Nationality Prediction</h1>
@@ -55,6 +62,7 @@ function Card() {
           type="text"
           value={inputVal}
           onChange={onInputChange}
+          onKeyDown={e => onKeyDown(e)}
         />
         <Button title="Predict" onClick={onBtnClick} />
         {result !== '' ? <p>You are from {regionNamesInEnglish.of(result)}</p> : null}
